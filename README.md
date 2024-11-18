@@ -1,4 +1,6 @@
-# -SantaIsComing-ToyFactory
+# SantaIsComing-ToyFactory
+# # Activity diagrama
+
 ```mermaid
 flowchart TD
     A((Inicio)) --> B[/Seleccionar tipo de usuario/]
@@ -41,4 +43,80 @@ flowchart TD
 
     L --> H
 
+```
+
+# # Classes diagramma
+
+```mermaid
+classDiagram
+    class Toy {
+        - String title
+        + Toy(String title)
+        + String getTitle()
+        + void setTitle(String title)
+        + String getDetails()
+    }
+
+    class GoodToy {
+        - String brand
+        - String ageRange
+        - String category
+        + GoodToy(String title, String brand, String ageRange, String category)
+        + String getDetails()
+        + String getBrand()
+        + void setBrand(String brand)
+        + String getAgeRange()
+        + void setAgeRange(String ageRange)
+        + String getCategory()
+        + void setCategory(String category)
+    }
+
+    class BadToy {
+        - String content
+        + BadToy(String title, String content)
+        + String getDetails()
+        + String getContent()
+        + void setContent(String content)
+    }
+
+    class ToyRepository {
+        + void add(Toy toy)
+        + void delete(String title)
+        + List<Toy> findAll()
+        + Toy findByTitle(String title)
+    }
+
+    class InMemoryToyRepository {
+        - List<Toy> toys
+        + void add(Toy toy)
+        + void delete(String title)
+        + List<Toy> findAll()
+        + Toy findByTitle(String title)
+    }
+
+    class ToyService {
+        - ToyRepository repository
+        + ToyService(ToyRepository repository)
+        + void addToy(Toy toy)
+        + void deleteToy(String title)
+        + List<Toy> getAllToys()
+        + List<Toy> getToysByType(Class<? extends Toy> type)
+    }
+
+    class ToyView {
+        - ToyService toyService
+        + ToyView(ToyService toyService)
+        + void displayMenu()
+    }
+
+    class SantaToyFactoryApp {
+        + static void main(String[] args)
+    }
+
+    Toy <|-- GoodToy
+    Toy <|-- BadToy
+    ToyRepository <|-- InMemoryToyRepository
+    InMemoryToyRepository <-- ToyService : uses
+    ToyService <-- ToyView : uses
+    SantaToyFactoryApp --> ToyView : interacts
 ```
