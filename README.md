@@ -1,5 +1,5 @@
 # SantaIsComing-ToyFactory
-# # Activity diagrama
+# # Activity diagram
 
 ```mermaid
 flowchart TD
@@ -45,7 +45,7 @@ flowchart TD
 
 ```
 
-# # Classes diagramma
+# # Classes diagram
 
 ```mermaid
 classDiagram
