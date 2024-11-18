@@ -1,4 +1,5 @@
 # SantaIsComing-ToyFactory
+Santa Toy Factory is a console-based application for managing toy inventory, designed using the MVC (Model-View-Controller) architecture. It helps Santa's elves to register, view, and delete toys, while Santa can review toy lists and export them as CSV files.
 # # Activity diagram
 
 ```mermaid
