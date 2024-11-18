@@ -18,7 +18,7 @@ Santa Toy Factory is a console-based application for managing toy inventory, des
 
 ## Project Structure
 
-# # Activity diagram
+## Activity diagram
 
 ```mermaid
 flowchart TD
@@ -64,7 +64,7 @@ flowchart TD
 
 ```
 
-# # Classes diagram
+## Classes diagram
 
 ```mermaid
 classDiagram
