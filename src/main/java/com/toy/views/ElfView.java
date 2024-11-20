@@ -1,14 +1,14 @@
 package com.toy.views;
 
-import org.factoriaf5.esvasl5_fundamentals.mvc.controllers.ToyController;
-import org.factoriaf5.esvasl5_fundamentals.mvc.dtos.BadToyDto;
-import org.factoriaf5.esvasl5_fundamentals.mvc.dtos.GoodToyDto;
+import com.toy.controllers.ToyController;
+import com.toy.dtos.BadToyDto;
+import com.toy.dtos.GoodToyDto;
 
 public class ElfView extends View {
 
     private static final ToyController controller = new ToyController();
 
-    public static void index() {
+    public static void menu() {
         System.out.println("-----------------------------------------");
         System.out.println("Gestor de juguetes (Tip de sessión: Elfo)");
         System.out.println("1. Añadir juguete");
@@ -44,7 +44,6 @@ public class ElfView extends View {
         System.out.println("Ingrese la categoria:");
         String category = scanner.next();
 
-        // Dto - Data Transfert Object
         controller.postGoodToy(new GoodToyDto(title, brand, age, category));
     }
 

@@ -1,11 +1,11 @@
 package com.toy.models;
 
-public class GoodToys extends Toy{
+public class GoodToy extends Toy{
     private String brand;
     private int targetAge;
     private String category;
 
-    public GoodToys(String title, String toyType, String brand, int targetAge, String category) {
+    public GoodToy(String title, String toyType, String brand, int targetAge, String category) {
         super(title, toyType);
         this.brand = brand;
         this.targetAge = targetAge;
