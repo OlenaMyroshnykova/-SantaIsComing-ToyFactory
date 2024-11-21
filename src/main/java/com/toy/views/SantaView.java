@@ -10,9 +10,10 @@ public class SantaView extends View {
 
     public static void menu() {
         System.out.println("-----------------------------------------");
-        System.out.println("Gestor de juguetes (Tip de sessión: Elfo)");
-        System.out.println("1. Añadir juguete");
-        System.out.println("2. Ver todos los juguetes");
+        System.out.println("Gestor de juguetes (Tipo de sesión: Santa)");
+        System.out.println("1. Ver lista de juguetes niños buenos");
+        System.out.println("2. Ver lista de juguetes niños malos");
+        System.out.println("3. Guargar lista de todos los juguetes (.csv)");
         System.out.println("4. Cerrar sesión");
         System.out.println("Seleccione una opción:");
 
@@ -22,16 +23,6 @@ public class SantaView extends View {
         if (option == 4) closeSession();
     }
 
-    public static void selectChild() {
-        System.out.println("-----------------------------------------");
-        System.out.println("Para niño ...:");
-        System.out.println("1. Bueno");
-        System.out.println("2. Malo");
-        int option = scanner.nextInt();
-
-        if (option == 1) postGoodToy();
-        if (option == 2) postBadToy();
-    }
 
     public static void postGoodToy() {
         System.out.println("-----------------------------------------");
