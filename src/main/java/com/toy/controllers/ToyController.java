@@ -1,7 +1,7 @@
 package com.toy.controllers;
 
-import com.toy.dtos.BadToyDto;
-import com.toy.dtos.GoodToyDto;
+import com.toy.dtos.BadToyDTO;
+import com.toy.dtos.GoodToyDTO;
 import com.toy.models.BadToy;
 import com.toy.models.GoodToy;
 import com.toy.repository.ToyRepository;
@@ -16,7 +16,7 @@ public class ToyController {
         this.repository = ToyRepositorySingleton.getInstance();
     }
 
-    public void postGoodToy(GoodToyDto goodToyDto) {
+    public void postGoodToy(GoodToyDTO goodToyDto) {
         // hará algo con el repositorio
         // si todo ha ido bien devolverá la respuesta
         GoodToy toy = new GoodToy(goodToyDto.title(), "Good", goodToyDto.brand(), goodToyDto.recommendedAge(), goodToyDto.category());
@@ -25,7 +25,7 @@ public class ToyController {
         ElfView.addToyResponse();
     }
 
-    public void postBadToy(BadToyDto badToyDto) {
+    public void postBadToy(BadToyDTO badToyDto) {
         BadToy toy = new BadToy(badToyDto.title(), "Bad", badToyDto.content());
         repository.setDB("bad_toy");
         repository.saveBadToy(toy);

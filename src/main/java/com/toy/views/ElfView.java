@@ -1,8 +1,8 @@
 package com.toy.views;
 
 import com.toy.controllers.ToyController;
-import com.toy.dtos.BadToyDto;
-import com.toy.dtos.GoodToyDto;
+import com.toy.dtos.BadToyDTO;
+import com.toy.dtos.GoodToyDTO;
 
 public class ElfView extends View {
 
@@ -19,6 +19,7 @@ public class ElfView extends View {
         int option = scanner.nextInt();
 
         if (option == 1) selectChild();
+        if (option == 2) showAllToys();
         if (option == 4) closeSession();
     }
 
@@ -44,7 +45,7 @@ public class ElfView extends View {
         System.out.println("Ingrese la categoria:");
         String category = scanner.next();
 
-        controller.postGoodToy(new GoodToyDto(title, brand, age, category));
+        controller.postGoodToy(new GoodToyDTO(title, brand, age, category));
     }
 
     public static void postBadToy() {
@@ -55,16 +56,16 @@ public class ElfView extends View {
         System.out.println("Ingrese el contenido:");
         String content = scanner.nextLine();
 
-        controller.postBadToy(new BadToyDto(title, content));
+        controller.postBadToy(new BadToyDTO(title, content));
     }
 
     public static void addToyResponse() {
         System.out.println("Juguete añadido con éxito");
-        index();
+        menu();
     }
 
     public static void closeSession() {
-        HomeView.index();
+        MainView.start();
     }
 
 }

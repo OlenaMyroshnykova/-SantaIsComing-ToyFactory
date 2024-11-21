@@ -1,5 +1,5 @@
 package com.toy.dtos;
 
-public record BadToyDto(String title, String content) {
+public record BadToyDTO(String title, String content) {
     
 }

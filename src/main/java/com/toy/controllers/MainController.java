@@ -8,7 +8,7 @@ public class MainController {
         index();
     }
 
-    public void index() {
+    public static void index() {
         // responde con una vista
         MainView.start();
     }

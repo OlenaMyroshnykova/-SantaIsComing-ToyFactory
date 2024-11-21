@@ -1,8 +1,8 @@
 package com.toy.views;
 
 import com.toy.controllers.ToyController;
-import com.toy.dtos.BadToyDto;
-import com.toy.dtos.GoodToyDto;
+import com.toy.dtos.BadToyDTO;
+import com.toy.dtos.GoodToyDTO;
 
 public class SantaView extends View {
 
@@ -19,7 +19,7 @@ public class SantaView extends View {
 
         int option = scanner.nextInt();
 
-        if (option == 1) selectChild();
+        //if (option == 1) selectChild();
         if (option == 4) closeSession();
     }
 
@@ -35,7 +35,7 @@ public class SantaView extends View {
         System.out.println("Ingrese la categoria:");
         String category = scanner.next();
 
-        controller.postGoodToy(new GoodToyDto(title, brand, age, category));
+        controller.postGoodToy(new GoodToyDTO(title, brand, age, category));
     }
 
     public static void postBadToy() {
@@ -46,7 +46,7 @@ public class SantaView extends View {
         System.out.println("Ingrese el contenido:");
         String content = scanner.nextLine();
 
-        controller.postBadToy(new BadToyDto(title, content));
+        controller.postBadToy(new BadToyDTO(title, content));
     }
 
     public static void addToyResponse() {
