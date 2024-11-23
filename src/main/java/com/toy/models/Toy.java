@@ -2,6 +2,8 @@ package com.toy.models;
 
 public class Toy {
 
+    private static int idCounterGood = 2;
+    private static int idCounterBad = 2;
     protected String id;
     protected String title;
     protected boolean isGoodToy;
@@ -9,6 +11,11 @@ public class Toy {
     public Toy(String title, boolean isGoodToy) {
         this.title = title;
         this.isGoodToy = isGoodToy;
+        if (isGoodToy) {
+            setId(idCounterGood++);
+        } else {
+            setId(idCounterBad++);
+        }
     }
 
     public Toy(String id, String title, boolean isGoodToy) {

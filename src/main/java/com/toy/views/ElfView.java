@@ -8,30 +8,50 @@ import com.toy.dtos.GoodToyDTO;
 import com.toy.models.BadToy;
 import com.toy.models.GoodToy;
 import com.toy.repository.ToyRepository;
+import com.toy.singletons.ToyRepositorySingleton;
 
 public class ElfView extends View {
 
     private static final ToyController controller = new ToyController();
     private final static ToyRepository toyRepository = new ToyRepository();
     
-        public static void menu() {
-            System.out.println("-----------------------------------------");
-            System.out.println("Gestor de juguetes (Tip de sessión: Elfo)");
-            System.out.println("1. Añadir juguete");
-            System.out.println("2. Ver todos los juguetes");
-            System.out.println("4. Cerrar sesión");
-            System.out.println("Seleccione una opción:");
+    public static void menu() {
+        System.out.println("-----------------------------------------");
+        System.out.println("Gestor de juguetes (Tip de sessión: Elfo)");
+        System.out.println("1. Añadir juguete");
+        System.out.println("2. Ver todos los juguetes");
+        System.out.println("3. Eliminar juguete");
+        System.out.println("4. Cerrar sesión");
+        System.out.println("Seleccione una opción:");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+
+        if (option == 1) selectChild();
+        if (option == 2) displayAllToys();
+        if (option == 3) deleteToy();
+        if (option == 4) closeSession();
+    }
     
-            int option = scanner.nextInt();
-    
-            if (option == 1) selectChild();
-            if (option == 2) displayAllToys();
-            if (option == 4) closeSession();
+    public static void deleteToy() {
+        System.out.println("-----------------------------------------");
+        System.out.print("Ingrese el ID del juguete que desea eliminar: ");
+        String id = scanner.nextLine();
+
+        boolean success = toyRepository.deleteToyById(id);
+
+        if (success) {
+            System.out.println("Juguete eliminado con éxito.");
+        } else {
+            System.out.println("No se pudo eliminar el juguete. Verifique el ID.");
         }
+        menu();
+    }
             
-            
-        public static void displayAllToys() {
-            List<Object> allToys = toyRepository.getAllToys();
+    public static void displayAllToys() {
+        System.out.println("-----------------------------------------");
+        ToyRepository repository = ToyRepositorySingleton.getInstance();
+        List<Object> allToys = repository.getAllToys();
 
         if (allToys.isEmpty()) {
             System.out.println("No hay juguetes en el inventario.");
@@ -47,6 +67,7 @@ public class ElfView extends View {
                 }
             }
         }
+        menu();
     }
 
     public static void selectChild() {

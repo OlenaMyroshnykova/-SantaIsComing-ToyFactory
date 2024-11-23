@@ -15,8 +15,8 @@ import com.toy.singletons.GoodToyDatabaseSingleton;
 public class ToyRepository {
 
     private IDatabase db;
-    private final GoodToyDatabase goodToyDatabase = new GoodToyDatabase();
-    private final BadToyDatabase badToyDatabase = new BadToyDatabase();    
+    private final GoodToyDatabase goodToyDatabase = GoodToyDatabaseSingleton.getInstance();
+    private final BadToyDatabase badToyDatabase = BadToyDatabaseSingleton.getInstance();    
 
     public void setDB(String type) {
         // setter injection
@@ -30,25 +30,37 @@ public class ToyRepository {
     @SuppressWarnings("unchecked")
     public void saveGoodToy(GoodToy toy) {
         db.save(toy);
+                
     }
 
     @SuppressWarnings("unchecked")
     public void saveBadToy(BadToy toy) {
         db.save(toy);
+               
     }
 
     public List<Object> getAllToys() {
         List<Object> allToys = new ArrayList<>();
 
-        // Получаем игрушки из базы хороших игрушек
         List<GoodToy> goodToys = goodToyDatabase.getToys();
         allToys.addAll(goodToys);
 
-        // Получаем игрушки из базы плохих игрушек
         List<BadToy> badToys = badToyDatabase.getToys();
         allToys.addAll(badToys);
 
         return allToys;
+    }
+
+    public boolean deleteToyById(String id) {
+        if (id.startsWith("B")) {
+            return goodToyDatabase.getToys().removeIf(toy -> toy.getId().equals(id));
+        }
+        if (id.startsWith("M")) {
+            return badToyDatabase.getToys().removeIf(toy -> toy.getId().equals(id));
+        }
+
+        System.out.println("No se pudo eliminar el juguete. Verifique el ID: " + id);
+        return false;
     }
 
 }
