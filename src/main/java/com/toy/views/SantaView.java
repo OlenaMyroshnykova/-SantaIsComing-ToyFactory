@@ -45,17 +45,15 @@ public class SantaView extends View {
     public static void displayGoodToys() {
         System.out.println("-----------------------------------------");
         
-        List<Object> allToys = repository.getAllToys();
+        List<GoodToy> goodToys = repository.getGoodToys();
 
-        if (allToys.isEmpty()) {
+        if (goodToys.isEmpty()) {
             System.out.println("No hay juguetes buenos en el inventario.");
         } else {
             System.out.println("Lista de todos los juguetes buenos:");
-            for (Object toy : allToys) {
-                if (toy instanceof GoodToy) {
-                    GoodToy goodToy = (GoodToy) toy;
-                    System.out.println("Buen juguete - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());// + ", Tipo: " + goodToy.getToyType());
-                }
+            for (Object toy : goodToys) {
+                GoodToy goodToy = (GoodToy) toy;
+                System.out.println("Buen juguete - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());
             }
         }
         menu();
@@ -63,13 +61,13 @@ public class SantaView extends View {
 
     public static void displayBadToys() {
         System.out.println("-----------------------------------------");
-        List<Object> allToys = repository.getAllToys();
+        List<BadToy> badToys = repository.getBadToys();
 
-        if (allToys.isEmpty()) {
+        if (badToys.isEmpty()) {
             System.out.println("No hay juguetes malos en el inventario.");
         } else {
             System.out.println("Lista de todos los juguetes malos:");
-            for (Object toy : allToys) {
+            for (Object toy : badToys) {
                  if (toy instanceof BadToy) {
                     BadToy badToy = (BadToy) toy;
                     System.out.println("Mal juguete - ID: " + badToy.getId() + ", Título: " + badToy.getTitle() + ", Contenido: " + badToy.getContent());

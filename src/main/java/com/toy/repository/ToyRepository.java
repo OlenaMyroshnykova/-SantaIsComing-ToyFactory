@@ -49,6 +49,18 @@ public class ToyRepository {
                
     }
 
+    public List<GoodToy> getGoodToys() {
+        List<GoodToy> goodToys = goodToyDatabase.getToys();
+
+        return goodToys;
+    }
+    
+    public List<BadToy> getBadToys() {
+        List<BadToy> badToys = badToyDatabase.getToys();
+
+        return badToys;
+    }
+    
     public List<Object> getAllToys() {
         List<Object> allToys = new ArrayList<>();
 

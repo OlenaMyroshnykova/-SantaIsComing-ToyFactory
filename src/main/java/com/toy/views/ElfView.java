@@ -60,7 +60,7 @@ public class ElfView extends View {
             for (Object toy : allToys) {
                 if (toy instanceof GoodToy) {
                     GoodToy goodToy = (GoodToy) toy;
-                    System.out.println("Good Toy - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());// + ", Tipo: " + goodToy.getToyType());
+                    System.out.println("Good Toy - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());
                 } else if (toy instanceof BadToy) {
                     BadToy badToy = (BadToy) toy;
                     System.out.println("Bad Toy - ID: " + badToy.getId() + ", Título: " + badToy.getTitle() + ", Contenido: " + badToy.getContent());
