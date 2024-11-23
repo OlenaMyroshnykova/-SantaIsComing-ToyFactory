@@ -12,7 +12,8 @@ import com.toy.singletons.ToyRepositorySingleton;
 
 public class SantaView extends View {
 
-    private static final ToyController controller = new ToyController();
+    //private static final ToyController controller = new ToyController();
+    private static final ToyRepository repository = ToyRepositorySingleton.getInstance();
 
     public static void menu() {
         System.out.println("-----------------------------------------");
@@ -31,11 +32,19 @@ public class SantaView extends View {
         if (option == 4) closeSession();
     }
 
-
+    public static void saveToysToCSV() {
+        boolean success = repository.saveAllToysToCSV();
     
+        if (success) {
+            System.out.println("Juguetes guardados con éxito en el archivo Toys.csv dentro de la carpeta del repositorio.");
+        } else {
+            System.out.println("Error al guardar los juguetes en el archivo CSV.");
+        }
+    }
+
     public static void displayGoodToys() {
         System.out.println("-----------------------------------------");
-        ToyRepository repository = ToyRepositorySingleton.getInstance();
+        
         List<Object> allToys = repository.getAllToys();
 
         if (allToys.isEmpty()) {
@@ -54,7 +63,6 @@ public class SantaView extends View {
 
     public static void displayBadToys() {
         System.out.println("-----------------------------------------");
-        ToyRepository repository = ToyRepositorySingleton.getInstance();
         List<Object> allToys = repository.getAllToys();
 
         if (allToys.isEmpty()) {

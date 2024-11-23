@@ -1,11 +1,20 @@
 package com.toy.repository;
 
+import java.io.FileWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 
 import com.toy.db.BadToyDatabase;
 import com.toy.db.GoodToyDatabase;
 import com.toy.db.IDatabase;
+import com.toy.dtos.BadToyDTO;
+import com.toy.dtos.BadToyDTOcsv;
+import com.toy.dtos.GoodToyDTO;
+import com.toy.dtos.GoodToyDTOcsv;
 import com.toy.models.BadToy;
 import com.toy.models.GoodToy;
 import com.toy.singletons.BadToyDatabaseSingleton;
@@ -61,6 +70,32 @@ public class ToyRepository {
 
         System.out.println("No se pudo eliminar el juguete. Verifique el ID: " + id);
         return false;
+    }
+
+    public boolean saveAllToysToCSV() {
+        String filePath = Paths.get(System.getProperty("user.dir"), "src", "main", "java", "com", "toy", "repository", "Toys.csv").toString();
+
+        try (FileWriter writer = new FileWriter(filePath)) {
+            List<Object> allToys = new ArrayList<>();
+
+            for (GoodToy toy : goodToyDatabase.getToys()) {
+                allToys.add(new GoodToyDTOcsv(toy.getId(), toy.getTitle(), "Good", toy.getCategory()));
+            }
+
+            for (BadToy toy : badToyDatabase.getToys()) {
+                allToys.add(new BadToyDTOcsv(toy.getId(), toy.getTitle(), "Bad", toy.getContent()));
+            }
+
+            StatefulBeanToCsv<Object> beanToCsv = new StatefulBeanToCsvBuilder<>(writer).build();
+
+            beanToCsv.write(allToys);
+
+            System.out.println("Archivo CSV guardado en: " + filePath);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al guardar los juguetes en el archivo CSV: " + e.getMessage());
+            return false;
+        }
     }
 
 }
