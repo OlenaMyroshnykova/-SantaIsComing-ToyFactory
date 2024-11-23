@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
 
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
@@ -76,26 +77,26 @@ public class ToyRepository {
         String filePath = Paths.get(System.getProperty("user.dir"), "src", "main", "java", "com", "toy", "repository", "Toys.csv").toString();
 
         try (FileWriter writer = new FileWriter(filePath)) {
-            List<Object> allToys = new ArrayList<>();
+            StatefulBeanToCsv<GoodToyDTOcsv> goodToyCsvWriter = new StatefulBeanToCsvBuilder<GoodToyDTOcsv>(writer).build();
 
-            for (GoodToy toy : goodToyDatabase.getToys()) {
-                allToys.add(new GoodToyDTOcsv(toy.getId(), toy.getTitle(), "Good", toy.getCategory()));
+            List<GoodToy> goodToys = goodToyDatabase.getToys();
+            for (GoodToy toy : goodToys) {
+                GoodToyDTOcsv dto = new GoodToyDTOcsv(toy.getId(), toy.getTitle(), "Good", toy.getCategory());
+                goodToyCsvWriter.write(dto);
             }
 
-            for (BadToy toy : badToyDatabase.getToys()) {
-                allToys.add(new BadToyDTOcsv(toy.getId(), toy.getTitle(), "Bad", toy.getContent()));
+            StatefulBeanToCsv<BadToyDTOcsv> badToyCsvWriter = new StatefulBeanToCsvBuilder<BadToyDTOcsv>(writer).withApplyQuotesToAll(false).build();
+            List<BadToy> badToys = badToyDatabase.getToys();
+            for (BadToy toy : badToys) {
+                BadToyDTOcsv dto = new BadToyDTOcsv(toy.getId(), toy.getTitle(), "Bad", toy.getContent());
+                badToyCsvWriter.write(dto);
             }
-
-            StatefulBeanToCsv<Object> beanToCsv = new StatefulBeanToCsvBuilder<>(writer).build();
-
-            beanToCsv.write(allToys);
 
             System.out.println("Archivo CSV guardado en: " + filePath);
             return true;
         } catch (Exception e) {
             System.out.println("Error al guardar los juguetes en el archivo CSV: " + e.getMessage());
             return false;
-        }
-    }
+        }    }
 
 }
