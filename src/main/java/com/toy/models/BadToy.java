@@ -4,8 +4,13 @@ public class BadToy extends Toy {
 
     private String content;
 
-    public BadToy(String title, String toyType, String content) {
-        super(title, toyType);
+    public BadToy(String title, boolean isGoodToy, String content) {
+        super(title, isGoodToy);
+        this.content = content;
+    }
+
+    public BadToy(String id, String title, boolean isGoodToy, String content) {
+        super(id, title, isGoodToy);
         this.content = content;
     }
 
@@ -16,6 +21,5 @@ public class BadToy extends Toy {
     public void setContent(String content) {
         this.content = content;
     }
-
 
 }

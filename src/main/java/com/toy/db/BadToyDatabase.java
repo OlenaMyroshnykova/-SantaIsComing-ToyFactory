@@ -24,7 +24,8 @@ public class BadToyDatabase implements IDatabase<BadToy> {
     }
 
     private void initDB() {
-        this.badToys = new ArrayList<>(Arrays.asList(new BadToy("Mystery Box 5x5", "Bad", "carbón")));
+        this.badToys = new ArrayList<>(Arrays.asList(
+                new BadToy("M1", "Mystery Box 5x5", true, "carbón")));
     }
 
 }

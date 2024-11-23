@@ -1,12 +1,20 @@
 package com.toy.models;
 
-public class GoodToy extends Toy{
+public class GoodToy extends Toy {
+
     private String brand;
     private int targetAge;
     private String category;
 
-    public GoodToy(String title, String toyType, String brand, int targetAge, String category) {
-        super(title, toyType);
+    public GoodToy(String title, boolean isGoodToy, String brand, int targetAge, String category) {
+        super(title, isGoodToy);
+        this.brand = brand;
+        this.targetAge = targetAge;
+        this.category = category;
+    }
+
+    public GoodToy(String id, String title, boolean isGoodToy, String brand, int targetAge, String category) {
+        super(id, title, isGoodToy);
         this.brand = brand;
         this.targetAge = targetAge;
         this.category = category;
@@ -35,4 +43,5 @@ public class GoodToy extends Toy{
     public void setCategory(String category) {
         this.category = category;
     }
+
 }
