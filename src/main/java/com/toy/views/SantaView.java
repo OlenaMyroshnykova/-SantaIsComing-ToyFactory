@@ -40,6 +40,7 @@ public class SantaView extends View {
         } else {
             System.out.println("Error al guardar los juguetes en el archivo CSV.");
         }
+        menu();
     }
 
     public static void displayGoodToys() {
@@ -53,7 +54,7 @@ public class SantaView extends View {
             System.out.println("Lista de todos los juguetes buenos:");
             for (Object toy : goodToys) {
                 GoodToy goodToy = (GoodToy) toy;
-                System.out.println("Buen juguete - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());
+                System.out.println("Buen juguete - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle() + ", Marca:" + goodToy.getBrand() + ", Edad Recomendada:" + goodToy.getTargetAge() + ", Categoria:" + goodToy.getCategory());
             }
         }
         menu();

@@ -50,8 +50,8 @@ public class ElfView extends View {
             
     public static void displayAllToys() {
         System.out.println("-----------------------------------------");
-        ToyRepository repository = ToyRepositorySingleton.getInstance();
-        List<Object> allToys = repository.getAllToys();
+        //ToyRepository repository = ToyRepositorySingleton.getInstance();
+        List<Object> allToys = toyRepository.getAllToys();
 
         if (allToys.isEmpty()) {
             System.out.println("No hay juguetes en el inventario.");
@@ -60,10 +60,10 @@ public class ElfView extends View {
             for (Object toy : allToys) {
                 if (toy instanceof GoodToy) {
                     GoodToy goodToy = (GoodToy) toy;
-                    System.out.println("Good Toy - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle());
+                    System.out.println("Buen juguete - ID: " + goodToy.getId() + ", Título: " + goodToy.getTitle() + ", Marca:" + goodToy.getBrand() + ", Edad Recomendada:" + goodToy.getTargetAge() + ", Categoria:" + goodToy.getCategory());
                 } else if (toy instanceof BadToy) {
                     BadToy badToy = (BadToy) toy;
-                    System.out.println("Bad Toy - ID: " + badToy.getId() + ", Título: " + badToy.getTitle() + ", Contenido: " + badToy.getContent());
+                    System.out.println("Mal juguete - ID: " + badToy.getId() + ", Título: " + badToy.getTitle() + ", Contenido: " + badToy.getContent());
                 }
             }
         }
@@ -93,6 +93,7 @@ public class ElfView extends View {
         String category = scanner.next();
 
         controller.postGoodToy(new GoodToyDTO(title, brand, age, category));
+        menu();
     }
 
     public static void postBadToy() {
@@ -104,11 +105,11 @@ public class ElfView extends View {
         String content = scanner.nextLine();
 
         controller.postBadToy(new BadToyDTO(title, content));
+        menu();
     }
 
     public static void addToyResponse() {
         System.out.println("Juguete añadido con éxito");
-        menu();
     }
 
     public static void closeSession() {

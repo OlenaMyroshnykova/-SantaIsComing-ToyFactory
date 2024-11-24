@@ -11,7 +11,7 @@ public class BadToyDatabase implements IDatabase<BadToy> {
     private List<BadToy> badToys;
 
     public BadToyDatabase() {
-        System.out.println("BadToyDatabase instance created at: " + Thread.currentThread().getStackTrace()[2]);
+        //System.out.println("BadToyDatabase instance created at: " + Thread.currentThread().getStackTrace()[2]);
         initDB();
     }
 
