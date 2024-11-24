@@ -50,7 +50,7 @@ public class ElfView extends View {
             
     public static void displayAllToys() {
         System.out.println("-----------------------------------------");
-        //ToyRepository repository = ToyRepositorySingleton.getInstance();
+      
         List<Object> allToys = toyRepository.getAllToys();
 
         if (allToys.isEmpty()) {

@@ -17,6 +17,7 @@ public class MainView extends View {
     }
 
     public static void quit() {
-        scanner.close();
+        //System.exit(0);
+
     }
 }
