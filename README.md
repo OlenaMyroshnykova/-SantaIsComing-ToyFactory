@@ -44,7 +44,7 @@ To run this project, you need to have the following installed:
    
 ## Unit tests to verify functionality across different system components.
 
-<img src="./src/images/coverage.jpg" title="coverage report" alt="coverage report"/>
+<img src="./src/images/coverage.png" title="coverage report" alt="coverage report"/>
 
 📖 Usage Example
 Elf
