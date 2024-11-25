@@ -32,17 +32,20 @@ To run this project, you need to have the following installed:
 
 ## Project Structure
 
-   src/main/java:
-   controllers: Controllers managing system logic.
-   models: Classes representing good and bad toys.
-   views: User interaction via the console.
-   repository: Management of data persistence.
-   db: Simulated databases for toys.
-   singletons: Singleton management for database instances.
-   src/test/java:
+  - src/main/java:
+  - controllers: Controllers managing system logic.
+  - models: Classes representing good and bad toys.
+  - views: User interaction via the console.
+  - repository: Management of data persistence.
+  - db: Simulated databases for toys.
+  - singletons: Singleton management for database instances.
+  - src/test/java:
 
    
-Unit tests to verify functionality across different system components.
+## Unit tests to verify functionality across different system components.
+
+<img src="./src/images/coverage.jpg" title="coverage report" alt="coverage report"/>
+
 📖 Usage Example
 Elf
 -----------------------------------------
