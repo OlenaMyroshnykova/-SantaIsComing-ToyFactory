@@ -31,6 +31,7 @@ To run this project, you need to have the following installed:
    git clone https://github.com/OlenaMyroshnykova/SantaIsComingToyFactory.git
 
 ## Project Structure
+
    src/main/java:
    controllers: Controllers managing system logic.
    models: Classes representing good and bad toys.
@@ -39,6 +40,8 @@ To run this project, you need to have the following installed:
    db: Simulated databases for toys.
    singletons: Singleton management for database instances.
    src/test/java:
+
+   
 Unit tests to verify functionality across different system components.
 📖 Usage Example
 Elf
