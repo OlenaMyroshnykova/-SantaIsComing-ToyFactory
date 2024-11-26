@@ -128,74 +128,120 @@ flowchart TD
 
 ```mermaid
 classDiagram
+    direction LR
+
+    class App {
+        +main(String[] args)
+    }
+
+    class MainController {
+        +index()
+    }
+
+    class MainView {
+        +start()
+        +quit()
+    }
+
+    class ElfView {
+        +menu()
+        +deleteToy()
+        +displayAllToys()
+        +selectChild()
+        +postGoodToy()
+        +postBadToy()
+        +addToyResponse()
+        +closeSession()
+    }
+
+    class SantaView {
+        +menu()
+        +viewGoodToys()
+        +viewBadToys()
+        +saveAllToysToCSV()
+        +closeSession()
+    }
+
     class Toy {
-        - String title
-        + Toy(String title)
-        + String getTitle()
-        + void setTitle(String title)
-        + String getDetails()
+        -String id
+        -String title
+        -boolean isGoodToy
+        +getId(): String
+        +getTitle(): String
+        +isGoodToy(): boolean
+        +setTitle(String title)
     }
 
     class GoodToy {
-        - String brand
-        - String ageRange
-        - String category
-        + GoodToy(String title, String brand, String ageRange, String category)
-        + String getDetails()
-        + String getBrand()
-        + void setBrand(String brand)
-        + String getAgeRange()
-        + void setAgeRange(String ageRange)
-        + String getCategory()
-        + void setCategory(String category)
+        -String brand
+        -int targetAge
+        -String category
+        +getBrand(): String
+        +getTargetAge(): int
+        +getCategory(): String
+        +setBrand(String brand)
+        +setTargetAge(int targetAge)
+        +setCategory(String category)
     }
 
     class BadToy {
-        - String content
-        + BadToy(String title, String content)
-        + String getDetails()
-        + String getContent()
-        + void setContent(String content)
+        -String content
+        +getContent(): String
+        +setContent(String content)
+    }
+
+    class ToyController {
+        +postGoodToy(GoodToyDTO toyDTO)
+        +postBadToy(BadToyDTO toyDTO)
     }
 
     class ToyRepository {
-        + void add(Toy toy)
-        + void delete(String title)
-        + List<Toy> findAll()
-        + Toy findByTitle(String title)
+        +saveGoodToy(GoodToy toy)
+        +saveBadToy(BadToy toy)
+        +deleteToyById(String id): boolean
+        +getAllToys(): List<Object>
     }
 
-    class InMemoryToyRepository {
-        - List<Toy> toys
-        + void add(Toy toy)
-        + void delete(String title)
-        + List<Toy> findAll()
-        + Toy findByTitle(String title)
+    class ToysDB {
+        -List<GoodToy> goodToys
+        -List<BadToy> badToys
+        +getGoodToys(): List<GoodToy>
+        +getBadToys(): List<BadToy>
+        +addGoodToy(GoodToy toy)
+        +addBadToy(BadToy toy)
+        +clear()
     }
 
-    class ToyService {
-        - ToyRepository repository
-        + ToyService(ToyRepository repository)
-        + void addToy(Toy toy)
-        + void deleteToy(String title)
-        + List<Toy> getAllToys()
-        + List<Toy> getToysByType(Class<? extends Toy> type)
+    class GoodToyDTO {
+        -String title
+        -String brand
+        -int targetAge
+        -String category
+        +getTitle(): String
+        +getBrand(): String
+        +getTargetAge(): int
+        +getCategory(): String
     }
 
-    class ToyView {
-        - ToyService toyService
-        + ToyView(ToyService toyService)
-        + void displayMenu()
+    class BadToyDTO {
+        -String title
+        -String content
+        +getTitle(): String
+        +getContent(): String
     }
 
-    class SantaToyFactoryApp {
-        + static void main(String[] args)
-    }
-
+    App --> MainController
+    MainController --> MainView
+    MainView --> ElfView
+    MainView --> SantaView
+    ElfView --> ToyController
+    SantaView --> ToyController
+    ToyController --> ToyRepository
+    ToyRepository --> ToysDB
+    ToysDB --> GoodToy
+    ToysDB --> BadToy
     Toy <|-- GoodToy
     Toy <|-- BadToy
-    ToyRepository <|-- InMemoryToyRepository
-    InMemoryToyRepository <-- ToyService : uses
-    ToyService <-- ToyView : uses
-    SantaToyFactoryApp --> ToyView : interacts
+    ToyController --> GoodToyDTO
+    ToyController --> BadToyDTO
 ```
